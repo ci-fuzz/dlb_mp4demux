@@ -7,7 +7,6 @@ on:
 env:
   FUZZING_SERVER_ADDRESS: app.code-intelligence.com:6773
   WEB_APP_ADDRESS:  https://app.code-intelligence.com
-  PROJECT_ID: projects/organizations_89d295318b3fded6_zint_git-f0f07698
 
 
 jobs:
@@ -32,6 +31,7 @@ jobs:
           test_collection_run: ${{ steps.start-fuzzing.outputs.test_collection_run }}
           fuzzing_server_address: ${{ env.FUZZING_SERVER_ADDRESS }}
           dashboard_address: ${{ env.WEB_APP_ADDRESS }}
+          timeout: 1800
       - id: save-results
         name: Save Fuzz Test Results
         uses: CodeIntelligenceTesting/github-actions/save-results@v3
