@@ -202,6 +202,10 @@ $(BASE)make/mp4d/linux_amd64/mp4d_debug.a: force
 
 
 
+mp4d_demuxer_parse: $(BASE)make/mp4d/linux_amd64/mp4d_debug.a
+	${CXX} ${CXXFLAGS} ${FUZZ_TEST_CXXFLAGS} ${FUZZ_TEST_LDFLAGS} -o $@ $(BASE)test/cifuzz/$@.cpp $(BASE)make/mp4d/linux_amd64/mp4d_debug.a -I$(BASE)include
+
+
 clean:
 	$(RM) $(OBJS_mp4demuxer_release)
 	$(RM) $(DEPS_mp4demuxer_release)
@@ -211,3 +215,4 @@ clean:
 	make -C $(BASE)make/mp4d/linux_amd64 clean
 	$(RM) mp4demuxer_release
 	$(RM) mp4demuxer_debug
+	$(RM) mp4d_demuxer_parse
